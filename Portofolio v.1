@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portofolio Saya</title>
+  <style>
+    /* Reset & Base Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      background-color: #000000;
+      color: #f5f5f7;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    a {
+      color: #2997ff;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Navigation Bar */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .nav-container {
+      max-width: 980px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 20px;
+    }
+    .logo {
+      font-weight: 600;
+      font-size: 1.1rem;
+      letter-spacing: -0.5px;
+    }
+    .nav-links a {
+      color: #a1a1a6;
+      margin-left: 24px;
+      font-size: 0.9rem;
+      transition: color 0.3s ease;
+    }
+    .nav-links a:hover {
+      color: #f5f5f7;
+      text-decoration: none;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 160px 20px 100px;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      letter-spacing: -1.5px;
+      margin-bottom: 12px;
+      background: linear-gradient(180deg, #ffffff 0%, #a1a1a6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      font-size: 1.5rem;
+      color: #86868b;
+      font-weight: 400;
+      letter-spacing: -0.5px;
+    }
+
+    /* Card Section */
+    .section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      letter-spacing: -0.8px;
+      margin-bottom: 40px;
+    }
+    .portfolio-grid {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 20px 100px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .card {
+      background: #1d1d1f;
+      border-radius: 18px;
+      padding: 32px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+    .card h3 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .card p {
+      color: #86868b;
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+    }
+    .card-tag {
+      font-size: 0.75rem;
+      color: #2997ff;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 40px 20px;
+      text-align: center;
+      color: #86868b;
+      font-size: 0.85rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.5rem; }
+      .hero p { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <div class="logo">Portfolio</div>
+      <div class="nav-links">
+        <a href="#about">Tentang</a>
+        <a href="#work">Karya</a>
+        <a href="#contact">Kontak</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="about">
+    <h1>Halo, Saya [Nama Kamu].</h1>
+    <p>Desainer Grafis & Kreator Visual yang berfokus pada desain yang bersih, fungsional, dan estetis.</p>
+  </section>
+
+  <!-- Portfolio / Work Section -->
+  <h2 class="section-title" id="work">Hasil Karya</h2>
+  <section class="portfolio-grid">
+    
+    <!-- Card 1 -->
+    <div class="card">
+      <div>
+        <div class="card-tag">Branding & Identity</div>
+        <h3>Proyek Desain Logo</h3>
+        <p>Konsep identitas visual yang modern dan minimalis untuk efisiensi komunikasi merek.</p>
+      </div>
+      <a href="#">Lihat Detail &rarr;</a>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="card">
+      <div>
+        <div class="card-tag">Visual Design</div>
+        <h3>Desain Media Sosial</h3>
+        <p>Eksplorasi layout dan tipografi untuk kebutuhan konten digital yang engaging.</p>
+      </div>
+      <a href="#">Lihat Detail &rarr;</a>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="card">
+      <div>
+        <div class="card-tag">UI/UX Concept</div>
+        <h3>Desain Antarmuka Web</h3>
+        <p>Rancangan tampilan aplikasi/website berfokus pada pengalaman pengguna yang intuitif.</p>
+      </div>
+      <a href="#">Lihat Detail &rarr;</a>
+    </div>
+
+  </section>
+
+  <!-- Footer / Contact Section -->
+  <footer id="contact">
+    <p>Mari terhubung dan bekerjasama.</p>
+    <p style="margin-top: 8px;">
+      <a href="mailto:emailkamu@gmail.com">Email Saya</a> • 
+      <a href="https://instagram.com" target="_blank">Instagram</a> • 
+      <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+    </p>
+    <p style="margin-top: 24px; color: #424245;">&copy; 2026. Dibuat dengan GitHub Pages.</p>
+  </footer>
+
+</body>
+</html>
