@@ -843,165 +843,102 @@
            10. PORTFOLIO SECTION
            ============================================ */
 
+        /* ============================================
+           10. PORTFOLIO SECTION (CIRCULAR CAROUSEL)
+           ============================================ */
+
         .portfolio {
             padding: var(--spacing-2xl) 0;
             background-color: var(--background);
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: rgba(44, 44, 44, 0.6);
-            margin-bottom: var(--spacing-xl);
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .filter-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: var(--spacing-sm);
-            margin-bottom: var(--spacing-2xl);
-        }
-
-        .filter-btn {
-            padding: 8px 16px;
-            border-radius: 24px;
-            border: none;
-            font-size: 13px;
-            font-weight: 600;
-            font-family: var(--font-heading);
-            cursor: pointer;
-            transition: var(--transition);
-            background-color: var(--secondary-bg);
-            color: var(--text-dark);
-            border: 1px solid var(--border-color);
-        }
-
-        .filter-btn:hover,
-        .filter-btn.active {
-            background-color: var(--primary);
-            color: white;
-            box-shadow: var(--shadow-md);
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: var(--spacing-lg);
-        }
-
-        @media (min-width: 768px) {
-            .projects-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .projects-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        .project-card {
-            background-color: var(--secondary-bg);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-md);
             overflow: hidden;
-            transition: var(--transition);
+            position: relative;
         }
 
-        .project-card:hover {
+        .circular-carousel-wrapper {
+            position: relative;
+            width: 100%;
+            height: 520px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .circular-carousel {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            top: 150px;
+            border-radius: 50%;
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .circular-carousel .project-card {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 150px;
+            height: 150px;
+            margin-top: -75px;
+            margin-left: -75px;
+            background-color: var(--secondary-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .circular-carousel .project-card:hover {
             box-shadow: var(--shadow-lg);
-            transform: translateY(-4px);
         }
 
-        .project-image {
-            height: 192px;
-            background: linear-gradient(135deg, rgba(244, 165, 165, 0.2) 0%, rgba(244, 165, 165, 0.05) 100%);
+        .circular-carousel .project-image {
+            width: 100%;
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 48px;
-            overflow: hidden;
         }
 
-        .project-image span {
-            transition: var(--transition);
-            transform: scale(1);
-        }
-
-        .project-card:hover .project-image span {
-            transform: scale(1.1);
-        }
-
-        .project-info {
-            padding: var(--spacing-lg);
-        }
-
-        .project-header {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            gap: var(--spacing-md);
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .project-title {
-            font-size: 18px;
-            font-family: var(--font-heading);
-            font-weight: 700;
-            flex: 1;
-        }
-
-        .project-year {
-            font-size: 11px;
-            font-weight: 600;
-            background-color: rgba(244, 165, 165, 0.1);
-            color: var(--primary);
-            padding: 4px 12px;
-            border-radius: 12px;
-            white-space: nowrap;
-        }
-
-        .project-category {
-            font-size: 12px;
-            color: var(--primary);
-            font-family: var(--font-heading);
-            font-weight: 700;
-            text-transform: capitalize;
-            margin-bottom: var(--spacing-md);
-        }
-
-        .project-description {
-            font-size: 13px;
-            color: rgba(44, 44, 44, 0.7);
-            line-height: 1.6;
-            margin-bottom: var(--spacing-md);
-        }
-
-        .project-button {
+        .circular-carousel .project-image img {
             width: 100%;
-            padding: 8px 0;
-            font-size: 13px;
-            font-family: var(--font-heading);
-            font-weight: 700;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-            background-color: transparent;
-            border-radius: var(--radius-md);
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-center-text {
+            text-align: center;
+            margin-bottom: var(--spacing-md);
+            z-index: 10;
+        }
+
+        .carousel-nav-btn {
+            position: absolute;
+            right: 8%;
+            top: 55%;
+            transform: translateY(-50%);
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--secondary-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-dark);
+            font-size: 20px;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 20;
+            box-shadow: var(--shadow-md);
             transition: var(--transition);
         }
 
-        .project-button:hover {
-            background-color: var(--primary);
+        .carousel-nav-btn:hover {
+            background: var(--primary);
             color: white;
-        }
-
-        .hidden {
-            display: none;
+            transform: translateY(-50%) scale(1.08);
         }
 
         /* ============================================
@@ -1564,11 +1501,46 @@
     </section>
 
     <!-- Portfolio Section -->
+   <!-- Portfolio Section -->
     <section id="portfolio" class="portfolio">
         <div class="container">
-            <h2 class="section-title">Portofolio</h2>
-            <p class="section-subtitle">Explore a selection of my recent design projects across branding, print, packaging, and digital media.</p>
+            <div class="carousel-center-text">
+                <h2 class="section-title">Portofolio</h2>
+                <p class="section-subtitle">Explore a selection of my recent design projects across branding, print, packaging, and digital media.</p>
+            </div>
+        </div>
 
+        <!-- Tombol Navigasi Putar -->
+        <button class="carousel-nav-btn" id="nextBtn" aria-label="Next">&#10095;</button>
+
+        <div class="circular-carousel-wrapper">
+            <div class="circular-carousel" id="circularCarousel">
+                
+                <div class="project-card">
+                    <div class="project-image"><img src="profil-bagas-1.jpg" alt="Work 1"></div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image"><img src="PhotoBagasFormal(1).jpg" alt="Work 2"></div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image"><img src="bagasfototidakformal.jpeg" alt="Work 3"></div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image"><img src="profil-bagas-1.jpg" alt="Work 4"></div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image"><img src="PhotoBagasFormal(1).jpg" alt="Work 5"></div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image"><img src="bagasfototidakformal.jpeg" alt="Work 6"></div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image"><img src="profil-bagas-1.jpg" alt="Work 7"></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
             <!-- Category Filter -->
             <div class="filter-buttons" id="filterButtons">
                 <button class="filter-btn active" data-filter="all">All Projects</button>
@@ -1985,6 +1957,36 @@
             section.style.transform = 'translateY(20px)';
             section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
             observer.observe(section);
+        });
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const cards = document.querySelectorAll('.circular-carousel .project-card');
+            const carousel = document.getElementById('circularCarousel');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            if (!carousel || !cards.length) return;
+
+            const totalCards = cards.length;
+            const radius = 380;
+            let currentRotation = 0;
+            const angleStep = 22;
+
+            cards.forEach((card, index) => {
+                const angle = (index - Math.floor(totalCards / 2)) * angleStep - 90; 
+                const rad = (angle * Math.PI) / 180;
+                
+                const x = Math.cos(rad) * radius;
+                const y = Math.sin(rad) * radius;
+
+                card.style.transform = `translate(${x}px, ${y}px) rotate(${angle + 90}deg)`;
+            });
+
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    currentRotation -= angleStep;
+                    carousel.style.transform = `rotate(${currentRotation}deg)`;
+                });
+            }
         });
     </script>
 </body>
