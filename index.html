@@ -854,9 +854,7 @@
         .circular-carousel-wrapper {
             position: relative;
             width: 100%;
-            max-width: 900px;
             height: 450px;
-            margin: 0 auto;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -871,6 +869,7 @@
             transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
+        /* Styling Kartu Biasa */
         .circular-carousel .project-card {
             position: absolute;
             top: 50%;
@@ -908,32 +907,21 @@
             z-index: 10;
         }
 
-        /* Tombol Navigasi Menyatu */
-        .carousel-nav-btn {
-            position: absolute;
-            right: 20px;
-            top: 35%;
-            transform: translateY(-50%);
-            width: 52px;
-            height: 52px;
-            border-radius: 50%;
-            background: var(--primary);
-            border: none;
+        /* Styling Khusus Tombol Panah agar Berbentuk Lingkaran Cantik di Lingkaran Kartu */
+        .circular-carousel .nav-card-btn {
+            background-color: var(--primary) !important;
+            border: none !important;
             color: white;
-            font-size: 18px;
-            cursor: pointer;
+            font-size: 32px;
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 25;
-            box-shadow: var(--shadow-md);
-            transition: var(--transition);
+            z-index: 30;
         }
 
-        .carousel-nav-btn:hover {
-            background: var(--primary-dark);
-            transform: translateY(-50%) scale(1.1);
-            box-shadow: var(--shadow-lg);
+        .circular-carousel .nav-card-btn:hover {
+            background-color: var(--primary-dark) !important;
+            transform: scale(1.1) !important;
         }
 
         /* ============================================
@@ -1505,7 +1493,6 @@
         </div>
 
         <div class="circular-carousel-wrapper">
-            <!-- Carousel Lingkaran Kartu -->
             <div class="circular-carousel" id="circularCarousel">
                 <div class="project-card"><div class="project-image"><span>🎨</span></div></div>
                 <div class="project-card"><div class="project-image"><span>📋</span></div></div>
@@ -1517,27 +1504,11 @@
                 <div class="project-card"><div class="project-image"><span>🎭</span></div></div>
                 <div class="project-card"><div class="project-image"><span>📊</span></div></div>
                 <div class="project-card"><div class="project-image"><span>🥤</span></div></div>
-            </div>
-
-            <!-- Tombol Navigasi Putar (Menyatu di Sisi Kanan Carousel) -->
-            <button class="carousel-nav-btn" id="nextBtn" type="button" aria-label="Next">&#10095;</button>
-        </div>
-    </section>
-            <!-- Category Filter -->
-            <div class="filter-buttons" id="filterButtons">
-                <button class="filter-btn active" data-filter="all">All Projects</button>
-                <button class="filter-btn" data-filter="branding">Branding</button>
-                <button class="filter-btn" data-filter="print">Print</button>
-                <button class="filter-btn" data-filter="packaging">Packaging</button>
-                <button class="filter-btn" data-filter="social-media">Social Media</button>
-                <button class="filter-btn" data-filter="editorial">Editorial</button>
-                <button class="filter-btn" data-filter="posters">Posters</button>
-                <button class="filter-btn" data-filter="campaigns">Campaigns</button>
-            </div>
-
-            <!-- Projects Grid -->
-            <div class="projects-grid" id="projectsGrid">
-                <!-- Projects will be inserted here by JavaScript -->
+                
+                <!-- Tombol Navigasi Dimasukkan sebagai Kartu Terakhir di Lingkaran -->
+                <button class="project-card nav-card-btn" id="nextBtn" type="button" aria-label="Next">
+                    <span>&#10095;</span>
+                </button>
             </div>
         </div>
     </section>
@@ -1663,26 +1634,28 @@
         // 1. CIRCULAR PORTFOLIO CAROUSEL
         // ============================================
 
-        function initializePortfolio() {
-            const cards = document.querySelectorAll('.circular-carousel .project-card');
+       function initializePortfolio() {
+            // Mengambil semua elemen kartu TERMASUK tombol panah
+            const items = document.querySelectorAll('.circular-carousel .project-card');
             const carousel = document.getElementById('circularCarousel');
             const nextBtn = document.getElementById('nextBtn');
             
-            if (!carousel || !cards.length) return;
+            if (!carousel || !items.length) return;
 
-            const totalCards = cards.length;
+            const totalItems = items.length;
             const radius = 380;
             let currentRotation = 0;
-            const angleStep = 20;
+            const angleStep = 20; // Derajat jarak antar kartu
 
-            cards.forEach((card, index) => {
-                const angle = (index - Math.floor(totalCards / 2)) * angleStep - 90; 
+            // Posisikan semua kartu dan tombol sejajar di busur lingkaran
+            items.forEach((item, index) => {
+                const angle = (index - Math.floor(totalItems / 2)) * angleStep - 90; 
                 const rad = (angle * Math.PI) / 180;
                 
                 const x = Math.cos(rad) * radius;
                 const y = Math.sin(rad) * radius;
 
-                card.style.transform = `translate(${x}px, ${y}px) rotate(${angle + 90}deg)`;
+                item.style.transform = `translate(${x}px, ${y}px) rotate(${angle + 90}deg)`;
             });
 
             if (nextBtn) {
