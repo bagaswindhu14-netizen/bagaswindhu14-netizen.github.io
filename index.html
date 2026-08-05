@@ -839,7 +839,7 @@
             line-height: 1.8;
         }
 
-        /* ============================================
+      /* ============================================
            10. PORTFOLIO SECTION (CIRCULAR CAROUSEL)
            ============================================ */
 
@@ -848,24 +848,23 @@
             background-color: var(--background);
             overflow: hidden;
             position: relative;
-            min-height: 600px;
+            min-height: 550px;
         }
 
         .circular-carousel-wrapper {
             position: relative;
             width: 100%;
-            height: 480px;
+            height: 450px;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 10px;
         }
 
         .circular-carousel {
             position: absolute;
             width: 800px;
             height: 800px;
-            top: 120px;
+            top: 100px;
             border-radius: 50%;
             transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
         }
@@ -874,10 +873,10 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 150px;
-            height: 150px;
-            margin-top: -75px;
-            margin-left: -75px;
+            width: 140px;
+            height: 140px;
+            margin-top: -70px;
+            margin-left: -70px;
             background-color: var(--secondary-bg);
             border: 1px solid var(--border-color);
             border-radius: 24px;
@@ -897,14 +896,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 48px; /* Ukuran emotikon */
+            font-size: 48px;
             background: linear-gradient(135deg, rgba(244, 165, 165, 0.2) 0%, rgba(244, 165, 165, 0.05) 100%);
-        }
-
-        .circular-carousel .project-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
         }
 
         .carousel-center-text {
@@ -1499,7 +1492,7 @@
         </div>
     </section>
 
-  <!-- Portfolio Section -->
+ <!-- Portfolio Section -->
     <section id="portfolio" class="portfolio">
         <div class="container">
             <div class="carousel-center-text">
@@ -1649,117 +1642,10 @@
         </div>
     </footer>
 
-    <script>
+   <script>
         /* ============================================
            BAGAS PORTFOLIO - JAVASCRIPT
            ============================================ */
-
-        // ============================================
-        // 1. PORTFOLIO DATA
-        // ============================================
-
-        const projects = [
-            {
-                id: 1,
-                title: 'Kaijoo Dorinku Rebranding',
-                category: 'branding',
-                year: '2023',
-                description: 'Complete brand refresh for a beverage company with modern color palette and updated mascot design.',
-                image: '🎨',
-            },
-            {
-                id: 2,
-                title: 'Be Genyol Bu Agus Campaign',
-                category: 'print',
-                year: '2023',
-                description: 'Comprehensive print advertising campaign for a Balinese restaurant including flyers, banners, and billboards.',
-                image: '📋',
-            },
-            {
-                id: 3,
-                title: 'Mason Chocolate Packaging',
-                category: 'packaging',
-                year: '2022',
-                description: 'Premium packaging design for artisanal chocolate brand with elegant purple and gold aesthetic.',
-                image: '📦',
-            },
-            {
-                id: 4,
-                title: 'Kaijoo Instagram Feed Design',
-                category: 'social-media',
-                year: '2023',
-                description: 'Cohesive social media feed design with 9+ posts covering brand story, promotions, and engagement content.',
-                image: '📱',
-            },
-            {
-                id: 5,
-                title: 'Tempo Magazine Redesign',
-                category: 'editorial',
-                year: '2022',
-                description: 'Complete magazine redesign with updated layout, typography, and visual hierarchy.',
-                image: '📰',
-            },
-            {
-                id: 6,
-                title: 'Fashion Magazine Layout',
-                category: 'editorial',
-                year: '2023',
-                description: 'Editorial design for fashion magazine covering contemporary and vintage fashion trends.',
-                image: '👗',
-            },
-            {
-                id: 7,
-                title: 'Digital Poster Series',
-                category: 'posters',
-                year: '2023',
-                description: 'Collection of digital posters for product advertising and promotional campaigns.',
-                image: '🖼️',
-            },
-            {
-                id: 8,
-                title: 'Roro Jonggrang Poster',
-                category: 'posters',
-                year: '2023',
-                description: 'Artistic poster inspired by Indonesian folklore with dramatic visual composition.',
-                image: '🎭',
-            },
-            {
-                id: 9,
-                title: 'COVID-19 Awareness Infographic',
-                category: 'posters',
-                year: '2022',
-                description: 'Educational infographic poster about pandemic transition and public health information.',
-                image: '📊',
-            },
-            {
-                id: 10,
-                title: 'Teh Pucuk Harum Campaign',
-                category: 'campaigns',
-                year: '2024',
-                description: 'Thematic promotional campaign for beverage brand with sports theme and Balinese cultural elements.',
-                image: '🥤',
-            },
-            {
-                id: 11,
-                title: 'Raja Optik Print Ads',
-                category: 'print',
-                year: '2024',
-                description: 'Series of promotional print advertisements for optical retail stores with discount offers.',
-                image: '👓',
-            },
-            {
-                id: 12,
-                title: 'Crumb by You Branding',
-                category: 'branding',
-                year: '2023',
-                description: 'Logo and brand identity design for artisanal bakery business.',
-                image: '🍪',
-            },
-        ];
-
-        // ============================================
-        // 2. INITIALIZE
-        // ============================================
 
         document.addEventListener('DOMContentLoaded', () => {
             initializePortfolio();
@@ -1770,10 +1656,10 @@
         });
 
         // ============================================
-        // 3. PORTFOLIO FILTERING
+        // 1. CIRCULAR PORTFOLIO CAROUSEL
         // ============================================
 
-       function initializePortfolio() {
+        function initializePortfolio() {
             const cards = document.querySelectorAll('.circular-carousel .project-card');
             const carousel = document.getElementById('circularCarousel');
             const nextBtn = document.getElementById('nextBtn');
@@ -1783,7 +1669,7 @@
             const totalCards = cards.length;
             const radius = 380;
             let currentRotation = 0;
-            const angleStep = 20; // Jarak sudut antarkartu
+            const angleStep = 20;
 
             cards.forEach((card, index) => {
                 const angle = (index - Math.floor(totalCards / 2)) * angleStep - 90; 
@@ -1802,62 +1688,17 @@
                 });
             }
         }
-        }
-
-        function renderProjects(category) {
-            const grid = document.getElementById('projectsGrid');
-            grid.innerHTML = '';
-
-            const filtered = category === 'all' 
-                ? projects 
-                : projects.filter(p => p.category === category);
-
-            filtered.forEach(project => {
-                const card = createProjectCard(project);
-                grid.appendChild(card);
-            });
-        }
-
-        function createProjectCard(project) {
-            const card = document.createElement('div');
-            card.className = 'project-card';
-            card.innerHTML = `
-                <div class="project-image">
-                    <span>${project.image}</span>
-                </div>
-                <div class="project-info">
-                    <div class="project-header">
-                        <h3 class="project-title">${project.title}</h3>
-                        <span class="project-year">${project.year}</span>
-                    </div>
-                    <p class="project-category">${project.category.replace('-', ' ')}</p>
-                    <p class="project-description">${project.description}</p>
-                    <button class="project-button">View Project</button>
-                </div>
-            `;
-            return card;
-        }
-
-        function setupFilterButtons() {
-            const buttons = document.querySelectorAll('.filter-btn');
-            buttons.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    buttons.forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    const category = btn.getAttribute('data-filter');
-                    renderProjects(category);
-                });
-            });
-        }
 
         // ============================================
-        // 4. MOBILE MENU
+        // 2. MOBILE MENU
         // ============================================
 
         function initializeMenu() {
             const menuToggle = document.getElementById('menuToggle');
             const navMenu = document.getElementById('navMenu');
             const navLinks = document.querySelectorAll('.nav-link');
+
+            if (!menuToggle || !navMenu) return;
 
             menuToggle.addEventListener('click', () => {
                 menuToggle.classList.toggle('active');
@@ -1870,53 +1711,35 @@
                     navMenu.classList.remove('mobile-open');
                 });
             });
+        }
 
-            document.addEventListener('click', (e) => {
-                if (!e.target.closest('.header')) {
-                    menuToggle.classList.remove('active');
-                    navMenu.classList.remove('mobile-open');
+        // ============================================
+        // 3. CONTACT FORM
+        // ============================================
+
+        function initializeContactForm() {
+            const form = document.getElementById('contactForm');
+            if (!form) return;
+            
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const messageDiv = document.getElementById('formMessage');
+                if (messageDiv) {
+                    messageDiv.textContent = '✓ Thanks for reaching out! I\'ll get back to you soon.';
+                    messageDiv.classList.add('show');
+                    form.reset();
+                    setTimeout(() => messageDiv.classList.remove('show'), 3000);
                 }
             });
         }
 
         // ============================================
-        // 5. CONTACT FORM
-        // ============================================
-
-        function initializeContactForm() {
-            const form = document.getElementById('contactForm');
-            form.addEventListener('submit', (e) => {
-                e.preventDefault();
-                handleFormSubmit(form);
-            });
-        }
-
-        function handleFormSubmit(form) {
-            const formData = {
-                name: form.querySelector('#name').value,
-                email: form.querySelector('#email').value,
-                message: form.querySelector('#message').value,
-            };
-
-            console.log('Form submitted:', formData);
-
-            const messageDiv = document.getElementById('formMessage');
-            messageDiv.textContent = '✓ Thanks for reaching out! I\'ll get back to you soon.';
-            messageDiv.classList.add('show');
-
-            form.reset();
-
-            setTimeout(() => {
-                messageDiv.classList.remove('show');
-            }, 3000);
-        }
-
-        // ============================================
-        // 6. UTILITIES
+        // 4. UTILITIES
         // ============================================
 
         function setCurrentYear() {
-            document.getElementById('year').textContent = new Date().getFullYear();
+            const yearEl = document.getElementById('year');
+            if (yearEl) yearEl.textContent = new Date().getFullYear();
         }
 
         function setupSmoothScroll() {
@@ -1931,74 +1754,6 @@
                 });
             });
         }
-
-        // ============================================
-        // 7. HEADER SCROLL EFFECT
-        // ============================================
-
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('.header');
-            if (window.scrollY > 0) {
-                header.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.12)';
-            } else {
-                header.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.08)';
-            }
-        });
-
-        // ============================================
-        // 8. INTERSECTION OBSERVER FOR ANIMATIONS
-        // ============================================
-
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('section').forEach(section => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(20px)';
-            section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-            observer.observe(section);
-        });
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const cards = document.querySelectorAll('.circular-carousel .project-card');
-            const carousel = document.getElementById('circularCarousel');
-            const nextBtn = document.getElementById('nextBtn');
-            
-            if (!carousel || !cards.length) return;
-
-            const totalCards = cards.length;
-            const radius = 380;
-            let currentRotation = 0;
-            const angleStep = 22;
-
-            cards.forEach((card, index) => {
-                const angle = (index - Math.floor(totalCards / 2)) * angleStep - 90; 
-                const rad = (angle * Math.PI) / 180;
-                
-                const x = Math.cos(rad) * radius;
-                const y = Math.sin(rad) * radius;
-
-                card.style.transform = `translate(${x}px, ${y}px) rotate(${angle + 90}deg)`;
-            });
-
-            if (nextBtn) {
-                nextBtn.addEventListener('click', () => {
-                    currentRotation -= angleStep;
-                    carousel.style.transform = `rotate(${currentRotation}deg)`;
-                });
-            }
-        });
     </script>
 </body>
 </html>
