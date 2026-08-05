@@ -839,90 +839,84 @@
             line-height: 1.8;
         }
 
-      /* ============================================
-           10. PORTFOLIO SECTION (CIRCULAR CAROUSEL)
-           ============================================ */
+    /* ============================================
+   PORTFOLIO CAROUSEL UPDATED STYLES
+   ============================================ */
+.portfolio {
+  padding: var(--spacing-2xl) 0;
+  background-color: var(--background);
+  overflow: hidden;
+  position: relative;
+  min-height: 550px;
+  user-select: none; /* Mencegah teks/gambar ter-highlight saat di-drag */
+}
 
-        .portfolio {
-            padding: var(--spacing-2xl) 0;
-            background-color: var(--background);
-            overflow: hidden;
-            position: relative;
-            min-height: 550px;
-        }
+.circular-carousel-wrapper {
+  position: relative;
+  width: 100%;
+  height: 450px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: grab; /* Indikator bahwa area bisa digeser */
+}
 
-        .circular-carousel-wrapper {
-            position: relative;
-            width: 100%;
-            height: 450px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+.circular-carousel-wrapper:active {
+  cursor: grabbing;
+}
 
-        .circular-carousel {
-            position: absolute;
-            width: 800px;
-            height: 800px;
-            top: 100px;
-            border-radius: 50%;
-            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-        }
+.circular-carousel {
+  position: absolute;
+  width: 800px;
+  height: 800px;
+  top: 120px;
+  border-radius: 50%;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
 
-        /* Styling Kartu Biasa */
-        .circular-carousel .project-card {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 140px;
-            height: 140px;
-            margin-top: -70px;
-            margin-left: -70px;
-            background-color: var(--secondary-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: var(--shadow-md);
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+/* Hilangkan transisi saat di-drag agar gerakan responsif/mulus */
+.circular-carousel.dragging {
+  transition: none !important;
+}
 
-        .circular-carousel .project-card:hover {
-            box-shadow: var(--shadow-lg);
-        }
+.circular-carousel .project-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 130px;
+  height: 130px;
+  margin-top: -65px;
+  margin-left: -65px;
+  background-color: var(--secondary-bg);
+  border: 2px solid var(--border-color);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
 
-        .circular-carousel .project-image {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
-            background: linear-gradient(135deg, rgba(244, 165, 165, 0.2) 0%, rgba(244, 165, 165, 0.05) 100%);
-        }
+.circular-carousel .project-card:hover {
+  border-color: var(--primary);
+  box-shadow: var(--shadow-lg);
+}
 
-        .carousel-center-text {
-            text-align: center;
-            margin-bottom: var(--spacing-md);
-            z-index: 10;
-        }
+/* Style untuk kartu yang sedang berada di posisi tengah/aktif */
+.circular-carousel .project-card.active-card {
+  border-color: var(--primary);
+  box-shadow: 0 0 20px rgba(244, 165, 165, 0.6);
+  transform-origin: center;
+}
 
-        /* Styling Khusus Tombol Panah agar Berbentuk Lingkaran Cantik di Lingkaran Kartu */
-        .circular-carousel .nav-card-btn {
-            background-color: var(--primary) !important;
-            border: none !important;
-            color: white;
-            font-size: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 30;
-        }
-
-        .circular-carousel .nav-card-btn:hover {
-            background-color: var(--primary-dark) !important;
-            transform: scale(1.1) !important;
-        }
+.circular-carousel .project-image {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  background: linear-gradient(135deg, rgba(244, 165, 165, 0.2) 0%, rgba(244, 165, 165, 0.05) 100%);
+}
 
         /* ============================================
            11. CONTACT SECTION
@@ -1635,36 +1629,128 @@
         // ============================================
 
        function initializePortfolio() {
-            // Mengambil semua elemen kartu TERMASUK tombol panah
-            const items = document.querySelectorAll('.circular-carousel .project-card');
-            const carousel = document.getElementById('circularCarousel');
-            const nextBtn = document.getElementById('nextBtn');
-            
-            if (!carousel || !items.length) return;
+  const items = document.querySelectorAll('.circular-carousel .project-card');
+  const carousel = document.getElementById('circularCarousel');
+  const wrapper = document.querySelector('.circular-carousel-wrapper');
 
-            const totalItems = items.length;
-            const radius = 380;
-            let currentRotation = 0;
-            const angleStep = 20; // Derajat jarak antar kartu
+  if (!carousel || !items.length || !wrapper) return;
 
-            // Posisikan semua kartu dan tombol sejajar di busur lingkaran
-            items.forEach((item, index) => {
-                const angle = (index - Math.floor(totalItems / 2)) * angleStep - 90; 
-                const rad = (angle * Math.PI) / 180;
-                
-                const x = Math.cos(rad) * radius;
-                const y = Math.sin(rad) * radius;
+  const totalItems = items.length;
+  const radius = 360; // Jarak jari-jari lingkaran
+  const angleStep = 360 / totalItems; // Pembagian sudut merata 360 derajat
+  let currentRotation = 0;
 
-                item.style.transform = `translate(${x}px, ${y}px) rotate(${angle + 90}deg)`;
-            });
+  // 1. Tata kartu melingkar sempurna
+  function updateCardPositions() {
+    items.forEach((item, index) => {
+      // Sudut dasar kartu dalam lingkaran (posisi 0 ada di atas / -90 deg)
+      const baseAngle = index * angleStep - 90;
+      const rad = (baseAngle * Math.PI) / 180;
+      const x = Math.cos(rad) * radius;
+      const y = Math.sin(rad) * radius;
 
-            if (nextBtn) {
-                nextBtn.addEventListener('click', () => {
-                    currentRotation -= angleStep;
-                    carousel.style.transform = `rotate(${currentRotation}deg)`;
-                });
-            }
-        }
+      item.style.transform = `translate(${x}px, ${y}px) rotate(${baseAngle + 90}deg)`;
+      item.dataset.index = index;
+    });
+    highlightActiveCard();
+  }
+
+  // 2. Tentukan kartu mana yang sedang berada di puncak/tengah
+  function highlightActiveCard() {
+    // Hitung index kartu yang paling dekat dengan posisi atas (-90 deg)
+    const normalizedRotation = ((-currentRotation % 360) + 360) % 360;
+    const activeIndex = Math.round(normalizedRotation / angleStep) % totalItems;
+
+    items.forEach((item, idx) => {
+      if (idx === activeIndex) {
+        item.classList.add('active-card');
+      } else {
+        item.classList.remove('active-card');
+      }
+    });
+  }
+
+  // 3. FITUR KLIK: Langsung putar kartu yang diklik ke posisi tengah atas
+  items.forEach((item, index) => {
+    item.addEventListener('click', (e) => {
+      // Mencegah rotasi berputar jika baru saja di-drag
+      if (isDragging) return;
+
+      // Putar carousel menuju posisi kartu terpilih
+      currentRotation = -index * angleStep;
+      carousel.style.transform = `rotate(${currentRotation}deg)`;
+      highlightActiveCard();
+    });
+  });
+
+  // 4. FITUR DRAG / GESER (Mouse & Touch)
+  let isDragging = false;
+  let startX = 0;
+  let startRotation = 0;
+  let dragThreshold = false;
+
+  function handleDragStart(clientX) {
+    isDragging = false;
+    dragThreshold = false;
+    startX = clientX;
+    startRotation = currentRotation;
+    carousel.classList.add('dragging');
+  }
+
+  function handleDragMove(clientX) {
+    const deltaX = clientX - startX;
+    
+    // Jika pergeseran lebih dari 5px, anggap sebagai aksi dragging (bukan klik biasa)
+    if (Math.abs(deltaX) > 5) {
+      isDragging = true;
+    }
+
+    if (isDragging) {
+      // Sensitivitas geseran (0.3)
+      currentRotation = startRotation + deltaX * 0.3;
+      carousel.style.transform = `rotate(${currentRotation}deg)`;
+      highlightActiveCard();
+    }
+  }
+
+  function handleDragEnd() {
+    carousel.classList.remove('dragging');
+
+    if (isDragging) {
+      // Snap / paskan ke kartu terdekat saat dilepas
+      const targetIndex = Math.round(-currentRotation / angleStep);
+      currentRotation = -targetIndex * angleStep;
+      carousel.style.transform = `rotate(${currentRotation}deg)`;
+      highlightActiveCard();
+
+      // Delay sebentar agar event 'click' tidak terpicu setelah drag
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+  }
+
+  // Event Listeners - Mouse
+  wrapper.addEventListener('mousedown', (e) => handleDragStart(e.clientX));
+  window.addEventListener('mousemove', (e) => {
+    if (startX !== 0) handleDragMove(e.clientX);
+  });
+  window.addEventListener('mouseup', () => {
+    if (startX !== 0) {
+      handleDragEnd();
+      startX = 0;
+    }
+  });
+
+  // Event Listeners - Touch (Mobile)
+  wrapper.addEventListener('touchstart', (e) => handleDragStart(e.touches[0].clientX));
+  wrapper.addEventListener('touchmove', (e) => handleDragMove(e.touches[0].clientX));
+  wrapper.addEventListener('touchend', () => {
+    handleDragEnd();
+    startX = 0;
+  });
+
+  // Inisialisasi posisi awal
+  updateCardPositions();
+}
 
         // ============================================
         // 2. MOBILE MENU
